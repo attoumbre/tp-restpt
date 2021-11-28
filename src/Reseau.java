@@ -32,6 +32,9 @@ public class Reseau {
 		voyageur[9].start();
 		voyageur[10].start();
 		voyageur[11].start();
+		bus[1].start();
+		bus[2].start();
+		bus[4].start();
 		voyageur[12].start();
 		voyageur[13].start();
 		voyageur[14].start();
@@ -54,9 +57,7 @@ public class Reseau {
 		voyageur[31].start();
 		voyageur[32].start();
 		voyageur[33].start();
-		bus[1].start();
-		bus[2].start();
-		bus[4].start();
+		
 		bus[5].start();
 		bus[3].start();
 		bus[6].start();
