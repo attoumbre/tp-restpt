@@ -5,11 +5,11 @@ public class Arret {
 	
 	private int nbVoyageurMonte;
 	private int nbVoyageur;
-	private int busEstla;
+	private Boolean busEstla;
 	
 	public Arret() {
 		nbVoyageur=0;
-		busEstla=0;
+		busEstla=false;
 		nbVoyageurMonte=0;
 	}
 	
@@ -30,7 +30,7 @@ public class Arret {
 	}
 	
 	public synchronized void monterBus() {
-		while(nbVoyageurMonte==Bus.nmbclient || busEstla==0) {
+		while(nbVoyageurMonte==Bus.nmbclient || !busEstla) {
 			this.waitBus();
 		}
 		nbVoyageurMonte++;
@@ -40,7 +40,7 @@ public class Arret {
 	}
 	
 	public synchronized void stationner() {
-		while(busEstla==1) {
+		while(busEstla) {
 			try {
 				wait();
 			} catch (Exception e) {
@@ -49,7 +49,7 @@ public class Arret {
 			
 		}
 		
-		busEstla++;
+		busEstla=true;
 		nbVoyageurMonte=0;
 		System.out.println("nom Thread :"+Thread.currentThread().getName()+" le bus a garé");
 		notifyAll();
@@ -57,7 +57,7 @@ public class Arret {
 	}
 	public synchronized void voyager() {
 		System.out.println("nom Thread :"+Thread.currentThread().getName()+" le bus est partis");
-		busEstla --;
+		busEstla=false;
 		notifyAll();
 	}
 

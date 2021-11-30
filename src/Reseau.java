@@ -2,19 +2,20 @@
 public class Reseau {
 	
 	static final int NB_VOYAGEUR = 100;
-	static final int NB_BUS = 7;
+	//static final int NB_BUS = 7;
 	private Arret arret;
 	private Billeterie billeterie;
-	private Bus[] bus = new Bus[NB_BUS];
+	private Bus bus;
+	//private Bus[] bus = new Bus[NB_BUS];
 	private Voyageur[] voyageur = new Voyageur[NB_VOYAGEUR];
 	public Reseau() {
 		arret = new Arret();
 		billeterie = new Billeterie();
 		
-		for(int i = 0; i < NB_BUS; i++) {
-			bus[i] = new Bus(arret);
-		}
-		
+//		for(int i = 0; i < NB_BUS; i++) {
+//			bus[i] = new Bus(arret);
+//		}
+		bus = new Bus(arret);
 		for(int i=0; i< NB_VOYAGEUR; i++) {
 			voyageur[i] = new Voyageur(arret,billeterie);
 		}
@@ -32,9 +33,7 @@ public class Reseau {
 		voyageur[9].start();
 		voyageur[10].start();
 		voyageur[11].start();
-		bus[1].start();
-		bus[2].start();
-		bus[4].start();
+		
 		voyageur[12].start();
 		voyageur[13].start();
 		voyageur[14].start();
@@ -58,9 +57,7 @@ public class Reseau {
 		voyageur[32].start();
 		voyageur[33].start();
 		
-		bus[5].start();
-		bus[3].start();
-		bus[6].start();
+		bus.start();
 		
 		
 		try {
@@ -97,12 +94,7 @@ public class Reseau {
 			voyageur[31].join();
 			voyageur[32].join();
 			voyageur[33].join();
-			bus[1].join();
-			bus[2].join();
-			bus[4].join();
-			bus[5].join();
-			bus[3].join();
-			bus[6].join();
+			
 			
 		} catch (Exception e) {
 			// TODO: handle exception
